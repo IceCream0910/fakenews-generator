@@ -8,6 +8,8 @@ const firebaseConfig = {
     measurementId: "G-Y3M8HW1MZ9"
 };
 
+
+
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -72,4 +74,23 @@ function restart() {
 
 function openArticle() {
     window.open($('#article-url').val(), '_blank');
+}
+
+function copyArticleUrl() {
+    copy($('#article-url').val());
+    toast('클립보드에 복사했어요!')
+}
+
+function copyToClipboard(val) {
+    const t = document.createElement("textarea");
+    document.body.appendChild(t);
+    t.value = val;
+    t.select();
+    document.execCommand('copy');
+    document.body.removeChild(t);
+}
+
+function copy(text) {
+    copyToClipboard(text);
+    console.log('Copied!');
 }
