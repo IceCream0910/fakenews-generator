@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="ko" data-useragent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.57 Whale/3.14.133.23 Safari/537.36">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
+    <meta name="napp-site-analysis" content="gdid=08138263_000000000000000006063643,service=news,collection=news,section=100">
+    <title>네이버 뉴스 - 기사</title>
+    <link rel="stylesheet" href="https://static-nnews.pstatic.net/css/min/20220428b/news.css">
+    <link rel="shortcut icon" type="image/x-icon" href="https://mimgnews.pstatic.net/image/news/m/2014/favicon/favicon.ico" />
+    <link rel="apple-touch-icon-precomposed" href="https://ssl.pstatic.net/static.news/image/news/m/2018/favicon/06/android_legacy_xxxhpdi_192x192.png" />
+    <link rel="apple-touch-icon-precomposed" size="72x72" href="https://ssl.pstatic.net/static.news/image/news/m/2018/favicon/06/android_legacy_hdpi_72X72.png" />
+    <link rel="apple-touch-icon-precomposed" size="96x96" href="https://ssl.pstatic.net/static.news/image/news/m/2018/favicon/06/android_legacy_xhdpi_96x96.png" />
+    <link rel="apple-touch-icon-precomposed" size="144x144" href="https://ssl.pstatic.net/static.news/image/news/m/2018/favicon/06/android_legacy_xxhpdi_144x144.png" />
+    <link rel="apple-touch-icon-precomposed" size="192x192" href="https://ssl.pstatic.net/static.news/image/news/m/2018/favicon/06/android_legacy_xxxhpdi_192x192.png" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+
+</head>
+
+<body class="n_news fs2 as_mp_layout">
+    <div class="end_container">
+        <div class="u_skip"><a href="#ct">본문 바로가기</a></div>
+        <header role="banner" class="as_gnb as_type_a">
+            <div class="header_inner" style="color: #ec652d;">
+                <div class="Ngnb">
+                    <div id="_OFFICE_HEADER" class="office_header _OFFICE_HEADER">
+                        <div class="ofhd_float" style="background-color: #ec652d;">
+                            <div class="ofhd_float_inner">
+                                <a href="#" class="ofhd_float_back _BACK">이전 페이지</a>
+                                <div class="ofhd_float_head">
+                                    <div class="ofhd_float_head_left">
+                                        <a class="ofhd_n_link" data-clk="gnb.naver"></a>
+                                        <a class="ofhd_news_link" data-clk="gnb.news"></a>
+                                    </div>
+                                    <h1 class="ofhd_float_title">
+                                        <!-- 언론사 명 -->
+                                        <a class="ofhd_float_title_text">뉴스1</a>
+                                    </h1>
+                                </div>
+                                <div class="ofhd_float_subscribe _CHANNEL_BUTTON_WRAP" style="display:none;">
+                                    <button type="button" class="_channel_add ofhd_float_subscribe_btn _CHANNEL_BUTTON _CHANNEL_ADD" data-clk-add="chmain421" data-clk-remove="chdelete421" data-text="구독" data-delay="1000" data-notification="true" data-notification-clk="notru">구독</button>
+                                    <p id="_CHANNEL_MAIN_PROMOTION" class="ofhd_float_subscribe_tooltip" style="display:none;">
+                                        <span class="ofhd_float_subscribe_tooltip_text"><strong>언론사를 구독하면 메인</strong>에서 바로 볼 수 있어요!</span>
+                                    </p>
+                                    <a id="_CHANNEL_LAYER_421_0006063643" href="#" class="ofhd_float_subscribe_layer _add _LINK" data-url-type="NAVERAPP_NEWS_CHANNEL" style="display: none;">
+                                        <span class="ofhd_float_subscribe_layer_text">메인 뉴스판에서 뉴스1 주요뉴스를 <br> 볼 수 있습니다.</span>
+                                        <span class="ofhd_float_subscribe_layer_link">보러가기</span>
+                                    </a>
+                                    <p id="_CHANNEL_REMOVE_LAYER_421_0006063643" class="ofhd_float_subscribe_layer _remove" style="display: none;">
+                                        <span class="ofhd_float_subscribe_layer_text"><strong>뉴스1</strong> 언론사 구독 해지되었습니다.</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 상단 헤더 컬러 -->
+                <div id="_LNB_PARENT_WRAP" class="Nlnb is_fixed" style="z-index:3000; color: #ec652d;">
+                    <div id="_LNB_WRAP" class="Nlnb_menu Ntype_scroll " style="position: relative;">
+                        <div id="_LNB" class="Nlnb_menu_inner">
+                            <ul class="Nlnb_menu_list" role="tablist">
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.mm"><span class="Nitem_link_menu">주요뉴스</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">지선</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM is_active" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">정치</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">경제</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">사회</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">세계</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">생활</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">IT</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">사설/칼럼</span></a></li>
+                                <li class="Nlist_item _LNB_ITEM" role="tab"><a class="Nitem_link" data-clk="prs_hom.section"><span class="Nitem_link_menu">랭킹</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <hr>
+
+        <div id="ct_wrap" class="ct_wrap">
+            <div class="ct_scroll_wrapper">
+                <div class="newsct_wrapper _GRID_TEMPLATE_COLUMN">
+                    <div id="ct" class="newsct" role="main">
+                        <div class="media_end_head go_trans">
+                            <div class="media_end_head_top">
+                                <a href="http://news1.kr/" class="media_end_head_top_logo">
+                                    <img src="https://mimgnews.pstatic.net/image/upload/office_logo/421/2018/09/19/logo_421_6_20180919151119.png" width="" height="32" alt="뉴스1" title="뉴스1" class="media_end_head_top_logo_img light_type">
+                                    <img src="https://mimgnews.pstatic.net/image/upload/office_logo/421/2020/07/23/dark_logo_421_6_20200723180439.png" width="" height="32" alt="뉴스1" title="뉴스1" class="media_end_head_top_logo_img dark_type">
+                                </a>
+                                <div class="media_end_head_channel">
+                                    <button type="button" class="media_end_head_channel_button _TOGGLE" data-target="_PICK_LAYER_421_0006063643">
+				<i class="media_end_head_channel_pick">PICK</i>
+				<i class="media_end_head_channel_info">안내</i>
+			</button>
+                                    <p id="_PICK_LAYER_421_0006063643" class="media_end_head_channel_layer" style="display: none;">
+                                        <span class="media_end_head_channel_layer_text">언론사가 주요기사로<br>선정한 기사입니다.</span>
+                                        <a href="#" class="media_end_head_channel_layer_link _MOVE_TO_NEWS">언론사별 바로가기</a>
+                                        <button type="button" class="media_end_head_channel_layer_close _CLOSE" data-target="_PICK_LAYER_421_0006063643">닫기</button>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="media_end_head_title">
+                                <!-- 기사 제목 -->
+                                <h2 class="media_end_head_headline" id="custom_title">기사의 제목이 들어갈 자리</h2>
+                            </div>
+                            <div class="media_end_head_info nv_notrans ">
+                                <div class="media_end_head_info_datestamp">
+                                    <div class="media_end_head_info_datestamp_bunch">
+                                        <!-- 기사 날짜 -->
+                                        <em class="media_end_head_info_datestamp_term">입력</em><span class="media_end_head_info_datestamp_time _ARTICLE_DATE_TIME" data-date-time="2022-05-01 01:47:39" title="custom-date">2022.05.01. 오전 1:47</span>
+                                    </div>
+                                </div>
+                                <div class="media_end_head_journalist">
+
+                                    <!-- 기자 이름 -->
+                                    <button id="_JOURNALIST_BUTTON" type="button" class="media_end_head_journalist_box _TOGGLE" data-target="_JOURNALIST_LAYER" data-clk="umbtn">
+				<em class="media_end_head_journalist_name"><span id="custom_author-3"></span></em>
+			</button>
+                                    <div id="_JOURNALIST_LAYER" class="media_end_head_journalist_layer _JOURNALIST_CARD" style="display: none;">
+                                        <ul class="media_end_head_journalist_layer_list">
+                                            <li class="media_end_head_journalist_layer_item _SUBSCRIBE_ELE" data-subscribe-type="JOURNALIST">
+                                                <a class="media_end_head_journalist_layer_link _like_cheer_count _LIKE_HIDE _LAZY_LOADING_WRAP" data-clk="ummore">
+                                                    <div class="media_end_head_journalist_layer_thumb _LAZY_LOADING_ERROR_HIDE">
+                                                    </div>
+
+                                                </a>
+                                                <div class="_JOURNALIST_ID" data-journalistId="29377">
+                                                    <button type="button" class="media_end_head_journalist_btn_subscribe _SUBSCRIBE" data-channelKey="JOURNALIST_29377" data-clk="umsubs">구독</button>
+                                                    <button type="button" class="media_end_head_journalist_btn_subscribe is_on _UNSUBSCRIBE" data-channelKey="JOURNALIST_29377" data-type="journalist" data-messageValue="윤수희" data-clk="umunsubs" style="display:none;">구독중</button>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="media_end_head_info_variety">
+                                    <div class="media_end_head_info_variety_left" id="commentFontGroup">
+                                        <div class="media_end_head_info_variety_likeit _LIKE_HIDE as_likeit_improve">
+                                            <!-- 좋아요 -->
+                                            <div class="_reactionModule u_likeit nv_notrans" data-sid="NEWS" data-cid="ne_421_0006063643">
+                                                <a class="u_likeit_button _face _LIKE_BUTTON" data-label="recommend" aria-haspopup="true" aria-pressed="false" data-clk="RTL.face">
+                                                    <span class="u_likeit_icons _icons">
+								<span class="u_likeit_icon __reaction__zeroface"></span>
+                                                    </span>
+                                                    <span class="u_likeit_text _count">추천</span>
+                                                </a>
+                                                <ul class="u_likeit_layer _faceLayer" role="menu">
+                                                    <li class="u_likeit_list useful" role="menuitem">
+                                                        <a class="u_likeit_list_button _button off" data-type="useful" data-log="RTL.useful|RTL.unuseful" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                            <span class="u_likeit_list_name _label">쏠쏠정보</span>
+                                                            <span class="u_likeit_list_count _count">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="u_likeit_list wow" role="menuitem">
+                                                        <a class="u_likeit_list_button _button off" data-type="wow" data-log="RTL.wow|RTL.unwow" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                            <span class="u_likeit_list_name _label">흥미진진</span>
+                                                            <span class="u_likeit_list_count _count">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="u_likeit_list touched" role="menuitem">
+                                                        <a class="u_likeit_list_button _button off" data-type="touched" data-log="RTL.touched|RTL.untouched" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                            <span class="u_likeit_list_name _label">공감백배</span>
+                                                            <span class="u_likeit_list_count _count">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="u_likeit_list analytical" role="menuitem">
+                                                        <a class="u_likeit_list_button _button off" data-type="analytical" data-log="RTL.analytical|RTL.unanalytical" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                            <span class="u_likeit_list_name _label">분석탁월</span>
+                                                            <span class="u_likeit_list_count _count">0</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="u_likeit_list recommend" role="menuitem">
+                                                        <a class="u_likeit_list_button _button off" data-type="recommend" data-log="RTL.recommend|RTL.unrecommend" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                            <span class="u_likeit_list_name _label">후속강추</span>
+                                                            <span class="u_likeit_list_count _count">0</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <!-- 좋아요 -->
+                                        </div>
+                                        <div class="media_end_head_info_variety_cmtcount _COMMENT_HIDE">
+                                            <a href="javascript:toast('댓글은 나중에 생각해보겠음');" class="media_end_head_cmtcount_button _COMMENT_COUNT_VIEW" id="comment_count" data-clk="rplt" data-zero-allow="false" data-max-limit="true">댓글</a>
+                                        </div>
+                                    </div>
+                                    <div class="media_end_head_info_variety_right">
+                                        <!-- 요약봇 -->
+                                        <div class="media_end_head_autosummary _auto_summary_wrapper _SUMMARY _LIKE_HIDE" data-officeId="421" data-articleId="0006063643">
+                                            <a href="javascript:toast('이 정도도 요약 못하면 독해력이 딸리는 것이니 반성하길 바람.');" class="media_end_head_autosummary_button _toggle_btn _SUMMARY_BTN" data-clk="sum"><span class="blind">본문 요약봇</span></a>
+                                            <div class="media_end_head_autosummary_layer_dimmed _SUMMARY_DIMMED" style="display: none;"></div>
+                                            <div class="media_end_head_autosummary_layer _auto_summary_contents _SUMMARY_LAYER" style="display: none;">
+                                                <div class="media_end_head_autosummary_layer_head">
+                                                    <strong class="media_end_head_autosummary_layer_head_tit">본문 요약봇<a href="https://m.help.naver.com/support/alias/news/news_m15.naver" class="media_end_head_autosummary_help _LINK" data-url="https://m.help.naver.com/support/alias/news/news_m15.naver" data-pc-url="https://help.naver.com/support/contents/contents.help?serviceNo=997&categoryNo=19330" data-clk="help">도움말</a></strong>
+                                                    <span class="media_end_head_autosummary_layer_head_txt">자동 추출 기술로 요약된 내용입니다. 요약 기술의 특성상 본문의 주요 내용이 제외될 수 있어, 전체 맥락을 이해하기 위해서는 기사 본문 전체보기를 권장합니다.</span>
+                                                    <a href="javascript:;" class="media_end_head_autosummary_layer_close _close_button _SUMMARY_CLOSE_BTN" data-clk="close"><span class="blind">닫기</span></a>
+                                                </div>
+                                                <div class="media_end_head_autosummary_layer_body">
+                                                    <div class="_contents_body _SUMMARY_CONTENT_BODY"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- TTS -->
+                                        <div id="tts_player_div_wrap" class="media_end_head_tts nv_notrans">
+                                            <button onclick="javascript:toast('이걸 소리로 들을 생각까지 한 것에 대해 다시 한 번 생각해보길 바람.');" type="button" class="media_end_head_tts_run _TTS_SETTING_BTN" title="텍스트 음성 변환 서비스" data-clk="wtts"><span class="blind">텍스트 음성 변환 서비스 사용하기</span></button>
+                                            <div class="media_end_head_tts_setlayer nv_notrans _TTS_SETTING_LAYER">
+                                                <div class="media_end_head_tts_setlayer_select">
+                                                    <div class="media_end_head_tts_setlayer_select_bunch" id="ttsSelectGender">
+                                                        <em class="media_end_head_tts_option_tit">성별</em>
+                                                        <button type="button" class="media_end_head_tts_option" value="m" data-clk="ttsma">남성</button>
+                                                        <button type="button" class="media_end_head_tts_option" value="f" data-clk="ttsfe">여성</button>
+                                                    </div>
+                                                    <div class="media_end_head_tts_setlayer_select_bunch" id="ttsSelectSpeed">
+                                                        <em class="media_end_head_tts_option_tit">말하기 속도</em>
+                                                        <button type="button" class="media_end_head_tts_option" value="3" data-clk="ttssp">느림</button>
+                                                        <button type="button" class="media_end_head_tts_option" value="2" data-clk="ttssp">보통</button>
+                                                        <button type="button" class="media_end_head_tts_option" value="0" data-clk="ttssp">빠름</button>
+                                                    </div>
+                                                    <p class="media_end_head_tts_desc">이동 통신망을 이용하여 음성을 재생하면 별도의 데이터 통화료가 부과될 수 있습니다.</p>
+                                                    <button type="button" class="media_end_head_tts_apply _TTS_LISTEN_BTN" data-clk="ttsstart">본문듣기 시작</button>
+                                                </div>
+                                                <button type="button" class="media_end_head_tts_setlayer_close _TTS_SETTING_LAYER_CLOSE_BTN" data-clk="ttsclose"><span class="blind">닫기</span></button>
+                                            </div>
+                                        </div>
+                                        <div id="tts_player_div"></div>
+                                        <!-- 폰트 사이즈 -->
+                                        <div class="media_end_head_fontsize _font_size_config_wrapper _FONT_WRAP">
+                                            <a href="javascript:toast('글자 크기 조절할 시간에 그냥 확대해서 보던가 돋보기 안경을 맞추길 바람.');" class="media_end_head_fontsize_set _font_size_config_toggle_btn _FONT_BUTTON" data-clk="fsz"><span class="blind">글자 크기 변경하기</span></a>
+                                            <div class="media_end_head_fontsize_setlayer _FONT_LAYER">
+                                                <ul class="media_end_head_fontsize_setlayer_select">
+                                                    <li class="media_end_head_fontsize_option1 _opt">
+                                                        <a href="#" class="media_end_head_fontsize_option_text _FONT_LAYER_BUTTON" data-value="1" data-clk="fsz1">가<em class="blind">1단계</em></a>
+                                                        <a href="#" class="media_end_head_fontsize_option_name _FONT_LAYER_BUTTON" data-value="1" data-clk="fsz1">작게</a>
+                                                    </li>
+                                                    <li class="media_end_head_fontsize_option2 _opt">
+                                                        <a href="#" class="media_end_head_fontsize_option_text _FONT_LAYER_BUTTON" data-value="2" data-clk="fsz2">가<em class="blind">2단계</em></a>
+                                                        <a href="#" class="media_end_head_fontsize_option_name _FONT_LAYER_BUTTON" data-value="2" data-clk="fsz2">보통</a>
+                                                    </li>
+                                                    <li class="media_end_head_fontsize_option3 _opt">
+                                                        <a href="#" class="media_end_head_fontsize_option_text _FONT_LAYER_BUTTON" data-value="3" data-clk="fsz3">가<em class="blind">3단계</em></a>
+                                                        <a href="#" class="media_end_head_fontsize_option_name _FONT_LAYER_BUTTON" data-value="3" data-clk="fsz3">크게</a>
+                                                    </li>
+                                                    <li class="media_end_head_fontsize_option4 _opt">
+                                                        <a href="#" class="media_end_head_fontsize_option_text _FONT_LAYER_BUTTON" data-value="4" data-clk="fsz4">가<em class="blind">4단계</em></a>
+                                                        <a href="#" class="media_end_head_fontsize_option_name _FONT_LAYER_BUTTON" data-value="4" data-clk="fsz4">아주크게</a>
+                                                    </li>
+                                                    <li class="media_end_head_fontsize_option5 _opt">
+                                                        <a href="#" class="media_end_head_fontsize_option_text _FONT_LAYER_BUTTON" data-value="5" data-clk="fsz5">가<em class="blind">5단계</em></a>
+                                                        <a href="#" class="media_end_head_fontsize_option_name _FONT_LAYER_BUTTON" data-value="5" data-clk="fsz5">최대크게</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="media_end_head_print">
+                                            <a href="javascript:toast('어디다가 쓰려고 출력까지 하려는지 모르겠지만 그런 거 만들 정도로 개발자가 가짜뉴스에 진심이지 않음.');" class="media_end_print_link _PRINT_BUTTON" data-print-url="/article/print/421/0006063643" data-clk="print"><span class="blind">인쇄하기</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="contents" class="newsct_body">
+                            <div id="newsct_article" class="newsct_article _article_body">
+                                <div id="dic_area" class="go_trans _article_content">
+                                    <!-- 기사 요약 -->
+                                    <strong class="media_end_summary" id="custom_summary"></strong>
+                                    <!--<img src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"><br>-->
+                                    <br><span id="custom_content"></span>
+
+                                </div>
+                                <div class="byline">
+                                    <p class="byline_p">
+                                        <!-- 마지막 기자 이름 반복 부분  -->
+                                        <span class="byline_s"><span id="custom_author"></span> 기자(fakenews@shinhub.com)</span>
+                                    </p>
+                                </div>
+                                <div class="newsct_journalist">
+                                    <div class="newsct_journalist_inner">
+                                        <h4 class="blind">기자 프로필</h4>
+                                        <div class="media_journalistcard _JOURNALIST_CARD _MORE_WRAP">
+                                            <div id="JOURNALIST_CARD_LIST" class="media_journalistcard_inner">
+                                                <div class="media_journalistcard_item _SUBSCRIBE_ELE" data-subscribe-type="JOURNALIST">
+                                                    <div class="media_journalistcard_item_inner">
+                                                        <div class="media_journalistcard_intro">
+                                                            <a class="media_journalistcard_summary" data-clk="mmore">
+                                                                <div class="media_journalistcard_summary_inner _LAZY_LOADING_WRAP">
+                                                                    <div class="media_journalistcard_summary_info">
+                                                                        <span class="media_journalistcard_summary_press">
+											</span>
+                                                                        <span class="media_journalistcard_summary_name">
+												<span class="media_journalistcard_summary_name_inner">
+                                                    <!-- 기자 이름 여기도 들어가야함 -->
+													<em class="media_journalistcard_summary_name_text"><span id="custom_author-2"></span> 기자</em>
+                                                                        </span>
+                                                                        </span>
+                                                                        <span class="media_journalistcard_summary_subscribe">
+												<span class="media_journalistcard_summary_subscribe_inner _SUBSCRIBE_COUNT_TEXT_WRAP">
+													<i class="media_journalistcard_summary_subscribe_item">구독자</i> <em class="media_journalistcard_summary_subscribe_value _SUBSCRIBE_COUNT_TEXT">26</em>
+												</span>
+                                                                        <span class="media_journalistcard_summary_subscribe_inner _like_cheer_count _LIKE_HIDE">
+													<div class="u_likeit_list_module _reactionModule" id="_cheer_29377_layer" data-sid="JOURNALIST" data-cid="29377" data-ccounttype="period">
+														<span class="u_likeit_list_btn _button" data-type="cheer" data-ishiddenzerocount="true" data-isHiddenLabelAsZeroCount="true">
+															<em class="u_txt _label">응원수</em>
+															<em class="u_cnt _count">-26</em>
+														</span>
+                                                                    </div>
+                                                                    </span>
+                                                                    </span>
+                                                                </div>
+                                                        </div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="media_journalistcard_morenews">
+                                                        <ul class="media_journalistcard_morenews_list">
+                                                            <li class="media_journalistcard_morenews_item">
+                                                                <a class="media_journalistcard_morenews_item_inner" data-clk="bestart">[사설] 저 사실 가짜뉴스를..</a>
+                                                            </li>
+                                                            <li class="media_journalistcard_morenews_item">
+                                                                <a class="media_journalistcard_morenews_item_inner" data-clk="bestart">[속보] 모 기자, 허위사실 유포혐의로 구속..</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="_RECOMMEND_JOURNALIST" class="media_journalistcard_recommend media_journalistcard_recommend_is_on" style="display:none;">
+                                                <div class="media_journalistcard_recommend_inner">
+                                                    <h4 class="media_journalistcard_recommend_title _RECOMMEND_JOURNALIST_WRAP">뉴스1의 구독 많은 기자</h4>
+
+                                                    <div class="media_journalistcard_recommend_channel _JOURNALIST_CHANNEL_PROMOTION">
+                                                        <strong>뉴스1</strong> 기사를 더 보고 싶다면?
+                                                        <button type="button" class="media_journalistcard_recommend_channel_add _JOURNALIST_CHANNEL_BANNER _CHANNEL_ADD" data-clk-add="chsub" data-clk-remove="chsubback" data-gdid="421" data-delay="1000">구독</button>
+                                                        <a href="#" id="_JOURNALIST_CHANNEL_LAYER_421_0006063643" class="media_journalistcard_recommend_channel_layer _LINK" data-url-type="NAVERAPP_NEWS_CHANNEL" style="display:none;">
+                                                            <span class="media_journalistcard_recommend_channel_layer_text"><strong>뉴스1</strong> 언론사 구독되었습니다. <br>메인 뉴스판에서 뉴스1 주요뉴스를 <br> 볼 수 있습니다.</span>
+                                                            <span class="media_journalistcard_recommend_channel_layer_link">보러가기</span>
+                                                        </a>
+                                                        <p id="_JOURNALIST_CHANNEL_REMOVE_LAYER_421_0006063643" class="media_journalistcard_recommend_channel_layer" style="display:none">
+                                                            <span class="media_journalistcard_recommend_channel_layer_text"><strong>뉴스1</strong> 언론사 구독 해지되었습니다.</span>
+                                                        </p>
+                                                    </div>
+                                                    <a href="#" class="media_journalistcard_recommend_close _TOGGLE" data-target="_RECOMMEND_JOURNALIST" data-clk="bmclose">닫기</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="copyright">
+                                <div class="c_inner">
+                                    <p class="c_text">Copyright ⓒ anyone. All rights reserved. 무단 전재 및 재배포 가능.</p>
+                                </div>
+                            </div>
+                            <div class="media_end_categorize">
+                                <a href="#" class="media_end_categorize_link _categorize_title _TOGGLE" data-target="_ARTICLE_SECTION_GUIDE_LAYER">이 기사는 언론사에서 <em class="media_end_categorize_item">가짜</em> 섹션으로 분류했습니다.</a>
+                                <div id="_ARTICLE_SECTION_GUIDE_LAYER" class="media_end_categorize_ct">
+                                    <em class="media_end_categorize_ct_title">기사 섹션 분류 안내</em>
+                                    <p class="media_end_categorize_ct_p">기사의 섹션 정보는 해당 언론사의 분류를 따르고 있습니다. 언론사는 개별 기사를 2개 이상 섹션으로 중복 분류할 수 있습니다.</p>
+                                    <a href="#" class="media_end_categorize_ct_close _CLOSE" data-target="_ARTICLE_SECTION_GUIDE_LAYER">닫기</a>
+                                </div>
+                            </div>
+                            <div id="channelBanner" style="display:none;">
+                                <div class="media_end_channel_banner _LAZY_LOADING_WRAP">
+                                    <a href="#" class="media_end_channel_banner_link _CHANNEL_BANNER _CHANNEL_ADD" data-clk-add="chbanner421" data-clk-remove="chsee421" data-notification="true" data-notification-clk="notbb">
+                                        <div class="media_end_channel_banner_head _LAZY_LOADING_ERROR_HIDE">
+                                            <div class="media_end_channel_banner_img">
+                                                <img data-src="https://mimgnews.pstatic.net/image/upload/office_logo/421/2018/08/08/logo_421_57_20180808173808.png" class="_LAZY_LOADING _LAZY_LOADING_INIT_HIDE" width="40" height="40" alt="뉴스1" style="display:none;">
+                                            </div>
+                                        </div>
+                                        <div class="media_end_channel_banner_body _before _CHANNEL_BANNER_ADD">
+                                            <p class="media_end_channel_banner_add">구독</p>
+                                            <p class="media_end_channel_banner_txt"><span class="media_end_channel_banner_span"><strong>메인에서</strong> 바로 보는 언론사 편집 뉴스 지금 바로 구독해보세요!</span></p>
+                                        </div>
+                                        <div class="media_end_channel_banner_body _after _CHANNEL_BANNER_REMOVE is_hidden">
+                                            <p class="media_end_channel_banner_add is_disabled">구독중</p>
+                                            <p class="media_end_channel_banner_txt"><span class="media_end_channel_banner_span"><strong>메인에서</strong> 바로 보는 언론사 편집 뉴스 지금 바로 확인해보세요!</span> <em>보러가기</em></p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="channelBannerRecommendList"></div>
+
+                            <div class="promotion">
+                                <ul class="p_list">
+                                    <li class="p_item">
+                                        <a href="javascript:toast('이걸 구독까지 해주려 한 점은 고맙지만 유감스럽게도 그런 기능 없음');" class="p_link" data-clk="promo">네이버 메인에서 [가짜뉴스] 구독하기!</a>
+                                    </li>
+                                    <li class="p_item">
+                                        <a class="p_link" data-clk="promo">코로나19 뉴스</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="media_end_linked">
+                                <h3 class="media_end_linked_title">
+                                    눌러보고 싶은 뉴스<span class="media_end_linked_title_desc">별로 쓸데없어 보이는 아무 기사나 가져온 것이며 <em>언론사 페이지(아웃링크)</em>로 이동해 볼 수 있을 수도 있고 없을 수도 있습니다.</span>
+                                </h3>
+                                <ul class="media_end_linked_list">
+                                    <li class="media_end_linked_item"><a href="javascript:toast('응 안 눌려');" class="media_end_linked_item_inner" data-clk="are.link" data-gdid="421" data-extra="{&quot;lk&quot;:{&quot;oid&quot;:&quot;421&quot;,&quot;aid&quot;:&quot;b0795ebb3623be7b&quot;}}">43세 이재은, 열애·임신 동시 고백 "임신 9주차…반쪽과 행복"</a></li>
+                                    <li class="media_end_linked_item"><a href="javascript:toast('응 안 눌려');" class="media_end_linked_item_inner" data-clk="are.link" data-gdid="421" data-extra="{&quot;lk&quot;:{&quot;oid&quot;:&quot;421&quot;,&quot;aid&quot;:&quot;b07961c29664aac2&quot;}}">10세 소녀 성폭행 후 살해…14살 사촌 오빠 체포 '충격'</a></li>
+                                    <li class="media_end_linked_item"><a href="javascript:toast('응 안 눌려');" class="media_end_linked_item_inner" data-clk="are.link" data-gdid="421" data-extra="{&quot;lk&quot;:{&quot;oid&quot;:&quot;421&quot;,&quot;aid&quot;:&quot;b0795e7e0c9ac2fe&quot;}}">정선희 "결혼 생활 10개월…나 정도면 미혼"</a></li>
+                                    <li class="media_end_linked_item"><a href="javascript:toast('응 안 눌려');" class="media_end_linked_item_inner" data-clk="are.link" data-gdid="421" data-extra="{&quot;lk&quot;:{&quot;oid&quot;:&quot;421&quot;,&quot;aid&quot;:&quot;b078e963be9ab5e3&quot;}}">고3 때 임신·출산…"전교 10등 들었는데…꿈 이루고 싶다"</a></li>
+                                    <li class="media_end_linked_item"><a href="javascript:toast('응 안 눌려');" class="media_end_linked_item_inner" data-clk="are.link" data-gdid="421" data-extra="{&quot;lk&quot;:{&quot;oid&quot;:&quot;421&quot;,&quot;aid&quot;:&quot;b078ed2c754656ec&quot;}}">가장 슬픈 '8인 식사'…매주 가족만찬 주문뒤 홀로 먹는 노인</a></li>
+                                </ul>
+                            </div>
+                            <div class="r_group_comp ad_box _da_banner is_border_none">
+                                <div id="nmap_c_421_0006063643_100_1" class="ad_area _AD_WRAP _PERSIST_HEIGHT" data-unitid="p_news_newsend" data-mobileonly="false" data-persist="1_ad" data-sync="false" data-article="false"></div>
+                            </div>
+
+                            <div class="ends_btn _PERSIST_HEIGHT _LIKE_HIDE as_likeit_improve" data-persist="0_faceLike">
+                                <div class="ends_btn_head">
+                                    <strong class="ends_head_title">이 기사를 추천하지 않습니다!</strong>
+                                    <button type="button" class="ends_help_btn _TOGGLE" data-clk="RTC.info" data-target="_LIKE_INFO_LAYER" data-classValue="is_hidden"></button>
+                                    <div id="_LIKE_INFO_LAYER" class="ends_help_layer is_hidden">
+                                        <p class="ends_help_desc">기사 추천은 24시간 내 50회까지 참여할 수 있습니다.</p>
+                                        <button class="ends_help_close _TOGGLE" data-clk="RTC.infoclose" data-target="_LIKE_INFO_LAYER" data-classValue="is_hidden"><span class="blind">닫기</span></button>
+                                    </div>
+                                </div>
+                                <div class="_reactionModule u_likeit" data-sid="NEWS" data-cid="ne_421_0006063643" id="likeItCountViewDiv" style="visibility: visible;">
+                                    <ul class="u_likeit_layer _faceLayer" role="menu">
+                                        <li class="u_likeit_list useful" role="menuitem">
+                                            <a class="u_likeit_list_button _button off" data-type="useful" data-log="RTC.useful|RTC.unuseful" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                <span class="u_likeit_list_name _label">쏠쏠정보</span>
+                                                <span class="u_likeit_list_count _count">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="u_likeit_list wow" role="menuitem">
+                                            <a class="u_likeit_list_button _button off" data-type="wow" data-log="RTC.wow|RTC.unwow" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                <span class="u_likeit_list_name _label">흥미진진</span>
+                                                <span class="u_likeit_list_count _count">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="u_likeit_list touched" role="menuitem">
+                                            <a class="u_likeit_list_button _button off" data-type="touched" data-log="RTC.touched|RTC.untouched" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                <span class="u_likeit_list_name _label">공감백배</span>
+                                                <span class="u_likeit_list_count _count">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="u_likeit_list analytical" role="menuitem">
+                                            <a class="u_likeit_list_button _button off" data-type="analytical" data-log="RTC.analytical|RTC.unanalytical" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                <span class="u_likeit_list_name _label">분석탁월</span>
+                                                <span class="u_likeit_list_count _count">0</span>
+                                            </a>
+                                        </li>
+                                        <li class="u_likeit_list recommend" role="menuitem">
+                                            <a class="u_likeit_list_button _button off" data-type="recommend" data-log="RTC.recommend|RTC.unrecommend" href="#" role="button" aria-selected="false" aria-pressed="false">
+                                                <span class="u_likeit_list_name _label">후속강추</span>
+                                                <span class="u_likeit_list_count _count">0</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="likeItSTimeLineShareDiv" style="display:none" class="u_likeit_module u_btn_likeit_on"></div>
+                                <div id="likeItScrollDiv" style="display:none" class="u_likeit_module">
+                                    <div class="u_likeit_friends" id="likeItFriendListDiv"></div>
+                                </div>
+                            </div>
+                            <div class="media_end_linked_more">
+                                <div class="media_end_linked_more_inner">
+                                    <a href="index.html" target="_blank" class="media_end_linked_more_link" data-clk="phome" data-gdid="421"><em class="media_end_linked_more_point">나도</em> 가짜뉴스 만들러가기</a>
+                                </div>
+                            </div>
+                            <div id="_MODAL_LAYER_FOR_UNSUBSCRIBER_PROMOTION" class="subscribe_cta_layer">
+                                <button type="button" class="cta_btn as_subscribe _CHANNEL_ADD" data-clk-add="mediaflw" data-delay="1000" data-notification="true">
+			<span class="cta_text"><em class="cta_text_em">언론사 구독 후</em> 기사보기</span>
+			<i class="cta_arrow"></i>
+		</button>
+                                <button type="button" class="cta_btn _UNSUBSCRIBER_PROMOTION_CLOSE" data-clk="medianoflw">
+			<span class="cta_text"><em class="cta_text_em">구독 없이</em> 계속 보기</span>
+			<i class="cta_arrow"></i>
+		</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="frontDetect" class="check_visible"></div>
+                    <div class="office_headline more_news optional_hidden pc_hidden _FLICKING_WRAP _OFFICE_HEADLINE _PERSIST_HEIGHT _PERSIST_META" data-persist="4_officeHeadline" data-count="3" data-flicking-nclk="false" data-nclk-prefix="art" data-grid-template-column-aside="">
+                        <div class="ofhe_head">
+                            <div class="ofhe_head_inner">
+                                <h2 class="ofhe_head_title">
+                                    <a href="https://media.naver.com/press/421" class="ofhe_head_title_link" data-clk="art.pheadhome">
+                                        <em>오늘의</em> 주요뉴스<br><br> 그딴거 없음
+                                    </a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="_COMMENT_NOTICE" class="changecmt" style="display:none;">
+                        <p class="changecmt_p _LAZY_LOADING_WRAP">
+                            <span class="changecmt_image _LAZY_LOADING_ERROR_HIDE"><img data-src="https://mimgnews.pstatic.net/image/upload/office_logo/421/2018/08/08/logo_421_57_20180808173808.png" class="changecmt_img _LAZY_LOADING" alt=""></span><em>뉴스1</em>이
+                            이 기사의 댓글 정책을 결정합니다.
+                            <span class="changecmt_info">
+						<button type="button" class="changecmt_info_icon _layer_notice_btn _TOGGLE" data-target="_COMMENT_NOTICE_INFO_LAYER" data-classValue="is_hidden">안내</button><span id="_COMMENT_NOTICE_INFO_LAYER" class="changecmt_layer _layer_notice is_hidden">
+							<strong class="changecmt_info_title"><span class="changecmt_ico_help"></span>댓글 정책 언론사별 선택제</strong>
+                            <span class="changecmt_info_txt">섹션별로 기사의 댓글 제공여부와 정렬방식을 <br>언론사가 직접 결정합니다. 기사 섹션 정보가<br>정치를 포함해 중복 분류된 경우 정치섹션 정책이 적용됩니다. 단, 운영규정에 따른<br>삭제나 이용제한 조치는 네이버가 직접<br>수행합니다.</span>
+                            <button class="changecmt_btn_info_close _close_layer _TOGGLE" data-target="_COMMENT_NOTICE_INFO_LAYER" data-classValue="is_hidden">레이어 닫기</button>
+                            </span>
+                            </span>
+                        </p>
+                    </div>
+                    <div id="cbox_module" class="_COMMENT _COMMENT_HIDE">
+                    </div>
+                    <div class="rankingnews mobile_hidden is_hidden" data-grid-template-column-aside="true">
+                        <div class="ra_head">
+                            <strong class="ra_title"><em class="ra_highlight">뉴스1</em> 헤드라인</strong>
+                            <a href="https://media.naver.com/press/421" class="media_more" data-clk="pheadhome"><span class="blind">더보기</span></a>
+                        </div>
+
+                    </div>
+                    <div id="aside_ad" class="mobile_hidden ad_area _NDP_AD" data-grid-template-column-aside="true"></div>
+                    <div class="rankingnews optional_hidden is_hidden _FLICKING_WRAP _OFFICE_RANKING_ALL _PERSIST_META" data-persist="1_officeRankingAll" data-aggregation-start="" data-aggregation-end="" data-count="2" data-flicking-nclk="true" data-nclk-prefix="ark" data-flicking-disable=""
+                        data-grid-template-column-aside="true">
+                        <div class="ra_head">
+                            <strong class="ra_title"><em class="ra_highlight">뉴스1</em> 랭킹 뉴스</strong>
+                            <span class="ra_time _AGGREGATION_TEXT_LIST">자정~오전 1시까지 집계한 결과입니다.</span>
+                            <span class="ra_time _AGGREGATION_TEXT_LIST" style="display:none;">전날 하루동안 집계한 결과입니다.</span>
+                            <a href="https://media.naver.com/press/421/ranking" class="media_more _MORE_URL_LIST" data-clk="ark.renwsmore"><span class="blind">더보기</span></a>
+                            <a href="https://media.naver.com/press/421/ranking?type&#x3D;comment" class="media_more _MORE_URL_LIST" data-clk="ark.cmtnwsmore" style="display:none;"><span class="blind">더보기</span></a>
+                        </div>
+
+                        <div class="ra_area">
+                            <div class="ra_tab _FLICKING_TAB_WRAP">
+                                <ul class="ra_tab_list">
+                                    <li class="ra_tab_item _FLICKING_TAB on" data-index="0" data-expandable="" data-random="false" data-subtab-count="1" data-aggregation-text-visible="" style="opacity:0;">
+                                        <a href="#" class="ra_tab_a" data-clk="ark.renwstab">많이 본</a>
+                                    </li>
+                                    <li class="ra_tab_item _FLICKING_TAB" data-index="1" data-expandable="" data-random="false" data-subtab-count="1" data-aggregation-text-visible="" style="opacity:0;">
+                                        <a href="#" class="ra_tab_a" data-clk="ark.cmtnwstab">댓글 많은</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="_MY_CHANNEL_OFFICE_WRAP pc_hidden" data-grid-template-column-aside="true">
+                    </div>
+                    <div class="office_headline more_news optional_hidden is_hidden _FLICKING_WRAP _OFFICE_HEADLINE _PERSIST_HEIGHT _PERSIST_META" data-persist="8_officeHeadline" data-count="5" data-flicking-nclk="true" data-nclk-prefix="arw" data-grid-template-column-aside="true">
+                        <div class="ofhe_head">
+                            <div class="ofhe_head_inner">
+                                <h2 class="ofhe_head_title">함께 볼만한 뉴스</h2>
+                                <button type="button" class="ofhe_info_button _TOGGLE" data-target="_ARTICLE_NEXT_AIRS_INFO" data-clk="arw.inftoggle"><span class="blind">안내</span></button>
+                                <div id="_ARTICLE_NEXT_AIRS_INFO" class="ofhe_info_layer" style="display:none">
+                                    <p class="ofhe_info_layer_text">이 기사를 본 이용자들이 함께 많이 본 기사, 해당 기사와 유사한 기사, 관심 기사 등을 자동 추천합니다</p>
+                                    <button type="button" class="ofhe_info_layer_close _CLOSE" data-target="_ARTICLE_NEXT_AIRS_INFO" data-clk="arw.infclose">닫기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ofhe_paginate pg">
+                    <div class="pg_num_area pg_num_area_v2">
+                        <button type="button" class="pg_btn_prev _FLICKING_PREV"><span class="blind">이전 뉴스들 보기</span></button>
+                        <div class="_FLICKING_INDICATOR" data-count="5"></div>
+                        <div class="pg_line"></div>
+                        <div class="pg_num pg_num">5</div>
+                        <button type="button" class="pg_btn_next _FLICKING_NEXT"><span class="blind">다음 뉴스들 보기</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="outside_area _OUTSIDE_AREA">
+            <div class="outside_area_inner _GRID_TEMPLATE_COLUMN_ASIDE _OUTSIDE_AREA_INNER"></div>
+        </div>
+        <aside class="main_aside _MAIN_ASIDE">
+            <div class="main_aside_inner _MAIN_ASIDE_INNER">
+                <h3 class="blind">구독</h3>
+            </div>
+        </aside>
+    </div>
+    </div>
+    <div class="media_end_tts_ticker _FADE_LAYER" id="_media_end_tts_ticker" style="display: none;">
+        <p class="media_end_tts_ticker_text" style="display: block;">본문 듣기를 <em class="media_end_tts_ticker_point">종료</em>하였습니다.</p>
+    </div>
+    <div class="tomain_ticker _TOMAIN_RECOMMAND_LAYER _FADE_LAYER" style="display: none;">이 기사를 <em class="tomain_ticker_point">추천</em>했습니다.
+    </div>
+    <div class="tomain_ticker _TOMAIN_CANCEL_LAYER _FADE_LAYER" style="display: none;">추천을 <em class="tomain_ticker_point">취소</em>했습니다.
+    </div>
+    <hr>
+    <div class="u_ft">
+        <a href="#" class="r_pg_top show _MOVE_TOP" id="goTop" data-clk="fot.top" style="display:none;">맨위로</a>
+        <footer role="contentinfo">
+            <p id="u_ftlkw" class="u_ftlkw">
+                <a href="javascript:toast('되겠냐');" class="u_ftlk _LOGOUT" data-clk="fot.logout">로그인 한 적도 없지만 로그아웃</a>
+                <a class="u_ftlk _LINK" data-url="https://m.naver.com/services.html?f=svc.news" data-pc-url="https://www.naver.com/more.html" data-clk="fot.sitemap">전체서비스</a>
+            </p>
+            <p class="u_cr">
+                <span class="u_ftm">
+					<span class="u_cri u_cri_v1"><a class="u_cra _LINK" data-url="https://m.news.naver.com/ombudsman/index" data-pc-url="https://news.naver.com/main/ombudsman/index.naver">서비스안내</a></span>
+                <span class="u_cri u_cri_v1"><a  class="u_cra _LINK" data-url="https://m.help.naver.com/support/alias/news/news_m1.naver" data-pc-url="https://help.naver.com/support/service/main.help?serviceNo=997&_news_news_1" data-clk="fot.help">뉴스도움말</a></span>
+                <span class="u_cri u_cri_v1"><a  class="u_cra _LINK" data-url="https://m.help.naver.com/support/alias/news/news_001.naver" data-pc-url="https://help.naver.com/support/contents/contents.help?serviceNo=997&categoryNo=8158" data-clk="fot.report">오류신고</a></span>
+                </span>
+                <span class="u_copyright">본 콘텐츠의 저작권은 제공처 또는 네이버에 없으며, 이를 무단<br>이용하는 경우 저작권법 등에 따라 법적책임을 질 수도 있고 안 질 수도 있습니다..</span>
+                <span class="u_cri"><span class="copymark">ⓒ</span> <a class="u_cra_v1" data-clk="fot.navercorp">NAVER Corp.가 아니라</a></span>
+                <span class="u_cri"><span class="copymark">ⓒ</span> <a class="u_cra_v1">님</a></span>
+            </p>
+        </footer>
+    </div>
+    <div id="_MY_FEED_CANCEL_MODAL" class="subscribe_dimmed is_hidden" style="display:none;">
+        <div class="subscribe_alert">
+            <p class="subscribe_alert_p _message _MY_FFED_CANCEL_MODAL_MESSAGE">
+            </p>
+            <div class="subscribe_alert_btns">
+                <a href="#" class="subscribe_alert_btn _CANCEL_YES_BTN _TOGGLE" data-target="_MY_FEED_CANCEL_MODAL" data-classValue="is_hidden">예</a>
+                <a href="#" class="subscribe_alert_btn _TOGGLE" data-target="_MY_FEED_CANCEL_MODAL" data-classValue="is_hidden">아니오</a>
+            </div>
+        </div>
+    </div>
+    <div id="_MODAL_LAYER_FOR_NOTIFICATION" class="modal is_hidden"></div>
+    <div id="_MODAL_LAYER_FOR_NOTIFICATION_ALL" class="modal is_hidden"></div>
+    <div id="_TICKER_LAYER_FOR_NOTIFICATION" class="ticker" style="display: none;"></div>
+    </div>
+
+</body>
+<script type="text/javascript" src="assets/js/article.js"></script>
+
+</html>

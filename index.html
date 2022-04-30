@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>가짜뉴스 생성기</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="assets/css/vendor/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/vendor/animate.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/vendor/hamburgers.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/vendor/select2.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/vendor/daterangepicker.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/vendor/util.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+
+    <meta name="robots" content="noindex, follow">
+    <script nonce="09771adf-9d17-4f21-9d9f-5751b83c7f8b">
+        (function(w, d) {
+            ! function(a, e, t, r) {
+                a.zarazData = a.zarazData || {}, a.zarazData.executed = [], a.zaraz = {
+                    deferred: []
+                }, a.zaraz.q = [], a.zaraz._f = function(e) {
+                    return function() {
+                        var t = Array.prototype.slice.call(arguments);
+                        a.zaraz.q.push({
+                            m: e,
+                            a: t
+                        })
+                    }
+                };
+                for (const e of["track", "set", "ecommerce", "debug"]) a.zaraz[e] = a.zaraz._f(e);
+                a.addEventListener("DOMContentLoaded", (() => {
+                    var t = e.getElementsByTagName(r)[0],
+                        z = e.createElement(r),
+                        n = e.getElementsByTagName("title")[0];
+                    for (n && (a.zarazData.t = e.getElementsByTagName("title")[0].text), a.zarazData.w = a.screen.width, a.zarazData.h = a.screen.height, a.zarazData.j = a.innerHeight, a.zarazData.e = a.innerWidth, a.zarazData.l = a.location.href, a.zarazData.r = e.referrer, a.zarazData.k = a.screen.colorDepth, a.zarazData.n = e.characterSet, a.zarazData.o = (new Date).getTimezoneOffset(), a.zarazData.q = []; a.zaraz.q.length;) {
+                        const e = a.zaraz.q.shift();
+                        a.zarazData.q.push(e)
+                    }
+                    z.defer = !0, z.referrerPolicy = "origin", z.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(a.zarazData))), t.parentNode.insertBefore(z, t)
+                }))
+            }(w, d, 0, "script");
+        })(window, document);
+    </script>
+</head>
+
+<body>
+    <div class="container-contact100" id="main-wrap">
+        <div class="wrap-contact100">
+            <div class="contact100-form validate-form">
+                <span class="contact100-form-title" style="font-family: 'NeoDunggeunmo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif">
+가짜뉴스 생성기<br>
+<span style="color:rgb(147, 147, 147);font-size:13px;">서비스 이용으로 인한 모든 책임은 사용자에게 있습니다.<br></span>
+                <span style="color:rgb(147, 147, 147);font-size:13px;position:relative;top:-15px;">만든 놈 = <a style="color:#0069d9;">윤태인</a></span>
+
+                </span>
+                <div class="wrap-input100 validate-input" data-validate="Please enter your name">
+                    <input class="input100" autocomplete="off" type="text" name="title" id="title" placeholder="기사 제목" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Please enter your email: e@a.x">
+                    <input class="input100" autocomplete="off" type="text" name="email" id="author" placeholder="기자 이름" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Please enter your phone">
+                    <input class="input100" autocomplete="off" type="text" name="phone" id="summary" placeholder="기사 요약" required>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Please enter your message">
+                    <textarea class="input100" autocomplete="off" name="message" id="content" placeholder="기사 내용" required></textarea>
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="container-contact100-form-btn" onclick="uploadArticle();" style="font-family: 'NeoDunggeunmo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif">
+                    <button class="contact100-form-btn">
+<span>
+    <ion-icon name="cloud-upload-outline" style="font-size:20px;position:relative;top:5px;"></ion-icon>
+업로드
+</span>
+</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-contact100" id="complete-wrap" style="display:none;flex-direction:column;gap:20px;font-family: 'NeoDunggeunmo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;">
+        <ion-icon name="checkmark-circle" style="color:rgb(0, 175, 91);font-size:50px;"></ion-icon>
+        <h3>기사를 게시했어요.</h3>
+        <div style="display:flex;flex-direction:row;">
+            <input id="article-url" type="text" style="background:#fff;border-radius:20px 0 0 20px;padding:20px;padding-right:50px;" value="" disabled>
+            <button onclick="copyArticleUrl();" style="background:#0069d9;display:flex;justify-content: center;
+    align-items: center;padding:20px;border-radius:0 20px 20px 0;color:#fff;width:60px;height:60px;"><ion-icon name="clipboard" style="font-size:30px;"></ion-icon></button>
+        </div>
+
+        <div style="display:flex;flex-direction:row;gap:20px;">
+            <button class="contact100-form-btn" onclick="openArticle();">기사 보기</button>
+            <button style="background-color:transparent;text-decoration: underline dotted;" onclick="restart();"><ion-icon name="refresh" style="    position: relative;
+    top: 3px;
+    margin-right: 5px;"></ion-icon>다시 만들기</button>
+
+        </div>
+
+
+
+    </div>
+</body>
+<script src="assets/js/main.js"></script>
+
+</html>
