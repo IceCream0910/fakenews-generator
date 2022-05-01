@@ -54,8 +54,12 @@ articleRef.then(function(doc) {
     if (doc.data()) {
         console.log(doc.data());
         $('#custom_title').html(doc.data().title);
-        $('#custom_date').html(doc.data().createdAt);
-        $('#custom_content').html(doc.data().content);
+        $('#custom_date').html(doc.data().createdAt.replace('am', '오전').replace('pm', '오후'));
+        const viewer = new toastui.Editor.factory({
+            el: document.querySelector('#viewer'),
+            viewer: true,
+            initialValue: doc.data().content,
+        });
         $('#custom_author').html(doc.data().author);
         $('#custom_author-2').html(doc.data().author);
         $('#custom_author-3').html(doc.data().author);

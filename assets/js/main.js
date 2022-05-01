@@ -8,7 +8,10 @@ const firebaseConfig = {
     measurementId: "G-Y3M8HW1MZ9"
 };
 
-
+var editor = new toastui.Editor({
+    el: document.querySelector('#editor'),
+    initialEditType: 'wysiwyg',
+});
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -40,7 +43,7 @@ function uploadArticle() {
     var title = $('#title').val();
     var author = $('#author').val();
     var summary = $('#summary').val();
-    var content = $('#content').val();
+    var content = editor.getMarkdown();
 
     if (title && author && summary && content) {
         console.log(title, author, summary, content)

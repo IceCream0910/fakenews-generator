@@ -433,3 +433,20 @@ textarea.input100 {
         opacity: 1;
     }
 }
+
+
+/* tui editor custom */
+
+.toastui-editor-defaultUI {
+    border-radius: 20px;
+    border: none;
+}
+
+.toastui-editor-defaultUI-toolbar {
+    border-top-left-radius: 20px;
+    border-radius: 20px 20px 0 0;
+}
+
+.toastui-editor-mode-switch {
+    border-radius: 0 0 20px 20px;
+}

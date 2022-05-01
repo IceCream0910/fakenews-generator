@@ -22,6 +22,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.0/showdown.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.5.0/firebase-firestore.js"></script>
+    <!-- 토스트 UI 에디터, 자바스크립트 코어 -->
+    <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+
+    <!-- 코드 미러 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
+
+    <!-- 토스트 UI 에디터, CSS 코어 -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 
 </head>
 
@@ -115,14 +123,14 @@
                                 <div class="media_end_head_info_datestamp">
                                     <div class="media_end_head_info_datestamp_bunch">
                                         <!-- 기사 날짜 -->
-                                        <em class="media_end_head_info_datestamp_term">입력</em><span class="media_end_head_info_datestamp_time _ARTICLE_DATE_TIME" data-date-time="2022-05-01 01:47:39" title="custom_date"></span>
+                                        <em class="media_end_head_info_datestamp_term">입력</em><span class="media_end_head_info_datestamp_time _ARTICLE_DATE_TIME" data-date-time="2022-05-01 01:47:39" id="custom_date"></span>
                                     </div>
                                 </div>
                                 <div class="media_end_head_journalist">
 
                                     <!-- 기자 이름 -->
                                     <button id="_JOURNALIST_BUTTON" type="button" class="media_end_head_journalist_box _TOGGLE" data-target="_JOURNALIST_LAYER" data-clk="umbtn">
-				<em class="media_end_head_journalist_name"><span id="custom_author-3"></span></em>
+				<em class="media_end_head_journalist_name"><span id="custom_author-3"></span> 기자</em>
 			</button>
                                     <div id="_JOURNALIST_LAYER" class="media_end_head_journalist_layer _JOURNALIST_CARD" style="display: none;">
                                         <ul class="media_end_head_journalist_layer_list">
@@ -270,8 +278,19 @@
                                 <div id="dic_area" class="go_trans _article_content">
                                     <!-- 기사 요약 -->
                                     <strong class="media_end_summary" id="custom_summary"></strong>
-                                    <!--<img src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_960_720.png"><br>-->
-                                    <br><span id="custom_content"></span>
+                                    <div id="viewer">
+                                    </div>
+                                    <style>
+                                        .toastui-editor-contents {
+                                            font-size: 1.7rem;
+                                        }
+                                        
+                                        #viewer img {
+                                            border-radius: 5px;
+                                            width: 100%;
+                                        }
+                                    </style>
+
 
                                 </div>
                                 <div class="byline">
